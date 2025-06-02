@@ -4,3 +4,7 @@
 // git add .
 // git commit -m ""
 // git push origin main
+// git checkout -b feat-1 ( buat branch baru )
+// git add .
+// git commit -m "add feat.ts"
+// git push origin
