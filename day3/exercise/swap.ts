@@ -1,6 +1,11 @@
-const text: string = "teSt";
+const text: string = "The QuiCk BrOwN Fox";
+let result: string = "";
 
-if (text[0] === text[0].toUpperCase()) {
-  console.log("UP");
-} else {
-}
+for (let i = 0; i < text.length; i++)
+  if (text[i] === text[i].toUpperCase()) {
+    result += text[i].toLowerCase();
+  } else {
+    result += text[i].toUpperCase();
+  }
+
+console.log(result);

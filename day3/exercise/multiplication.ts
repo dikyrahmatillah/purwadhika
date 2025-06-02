@@ -2,5 +2,5 @@
 
 const numInput: number = 9;
 for (let i = 1; i <= 10; i++) {
-  console.log(`${numInput} x ${i}`);
+  console.log(`${numInput} x ${i} = ${numInput * i}`);
 }
