@@ -13,15 +13,18 @@
 // }
 // console.log(araAra);
 
-function lifeInWeeks(age: number) {
-  const ageLeft = 90 - age;
-  const dateNow: Date = new Date();
-  const Year = dateNow.getFullYear() + ageLeft;
-  const dateLater: Date = new Date(Year, 0, 0);
-  const diff = dateLater.getTime() - dateNow.getTime();
-  const diffDays = Math.floor(diff / (1000 * 60 * 60 * 24));
-  const diffMonth = Math.floor(diff / (1000 * 60 * 60 * 24 * 30));
-  console.log(diffMonth);
-}
+// function lifeInWeeks(age: number) {
+//   const ageLeft = 90 - age;
+//   const dateNow: Date = new Date();
+//   const Year = dateNow.getFullYear() + ageLeft;
+//   const dateLater: Date = new Date(Year, 0, 0);
+//   const diff = dateLater.getTime() - dateNow.getTime();
+//   const diffDays = Math.floor(diff / (1000 * 60 * 60 * 24));
+//   const diffMonth = Math.floor(diff / (1000 * 60 * 60 * 24 * 30));
+//   console.log(diffMonth);
+// }
 
-lifeInWeeks(54);
+// lifeInWeeks(54);
+
+console.log(Math.floor(0.88));
+// console.log(Math.floor(Math.random() * 11));
