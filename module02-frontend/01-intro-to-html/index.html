@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title style="color: aqua;">Intro to HTML</title>
+    <style>
+        h1 {
+            color: cadetblue !important;
+            font-size: 35px;
+            text-shadow: 0px 7px 10px red;
+        }
+
+        #logo-wrapper {
+            border-width: 2px;
+            border-style: dashed;
+            border-radius: 20px;
+            margin-top: 20px;
+            padding: 5px;
+        }
+
+        span {
+            display: inline-block;
+            text-align: right;
+        }
+
+        .tagline {
+            color: darkblue;
+        }
+    </style>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="./assets/logo.svg" type="image/x-icon">
+</head>
+
+<body>
+    <header id="logo-wrapper">
+        <img src="./assets/logo.svg" alt="logo" width="60" />
+        <span>DuckDuckQuack</span>
+    </header>
+    <section>
+        <h1 style="text-transform: capitalize; color: blueviolet">Welcome to DuckDuckQuack</h1>
+        <figure>
+            <img src="https://cdn.britannica.com/42/58842-050-6E524F71/Mandarin-duck-Aix-galericulata.jpg"
+                alt="Duck Image" width="300" title="Our Beloved Duck" class="hero-img" />
+            <figcaption>Our beloved duck</figcaption>
+        </figure>
+        <p class="tagline">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ratione numquam veniam quia
+            temporibus est
+            repudiandae
+            sed, expedita nihil fugit. Blanditiis laudantium accusamus, cumque totam perferendis ipsam consequuntur
+            neque
+            optio vel.
+            Sed temporibus nihil ipsa, recusandae omnis provident cupiditate? Sed quaerat eos similique! Saepe unde
+            autem
+            vero explicabo similique? Repudiandae, quibusdam. Laborum, quidem dolorum esse aliquid fugiat porro deserunt
+            voluptatem qui!</p>
+    </section>
+
+    <section class="logo-wrapper">
+        <h3>Our Ducks</h3>
+        <h2>See our ducks</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore distinctio cupiditate, omnis dicta ex
+            voluptates, accusamus ad repellat ea a, nihil odit! Esse asperiores mollitia, assumenda est eius ea culpa!
+        </p>
+
+        <h4>Our Duck Collection</h4>
+        <ul>
+            <li>Daffy Duck</li>
+            <li>Donald Duck</li>
+            <li>Scrooge McDuck</li>
+            <li>Darkwing Duck</li>
+            <li>Howard the Duck</li>
+        </ul>
+
+        <h4>Step to choose your duck</h4>
+        <ol>
+            <li>Choose a duck</li>
+            <li>Click on the duck</li>
+            <li>Enjoy your duck</li>
+            <li>Repeat as necessary</li>
+        </ol>
+
+    </section>
+
+    <section>
+        <h3>Customer Stories</h3>
+        <h2>What our customers say</h2>
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Architecto magni voluptates quisquam non natus
+            tenetur ratione amet tempora vitae dicta. Ullam sint consectetur dolore eos distinctio totam ducimus ipsum
+            sequi.</p>
+    </section>
+
+    <section>
+        <h3>Give us your feedback</h3>
+        <h2>We value your feedback</h2>
+        <form action="#">
+            <div>
+                <label for="name">name</label>
+                <input type="text" placeholder="Your Name" id="name" />
+            </div>
+
+            <div>
+                <label for="email">email</label>
+                <input type="email" id="email" />
+            </div>
+
+            <div>
+                <label for="feedback">feedback</label>
+                <textarea rows=" 5" placeholder="Your Feedback" id="feedback"></textarea>
+            </div>
+            <button>Send</button>
+        </form>
+    </section>
+</body>
+
+</html>
+<!--- Opening & closing -->
+<!-- <tagname>Content</tagname> -->
+<!-- Self Closing -->
+<!-- <img /> -->
+<!-- Non Closing-->
+<!-- <DOCTYPE>Content -->
