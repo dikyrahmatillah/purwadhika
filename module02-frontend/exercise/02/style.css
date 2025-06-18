@@ -1,0 +1,159 @@
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --pure-white: #ffffff;
+  --cream: #f2eae2;
+  --auromental-saurus: #6c7289;
+  --deep-aquamarine: #3d8168;
+  --deep-aquamarine-hover: #1a4032;
+  --gunmetal: #1c232b;
+  --fraunces: "Fraunces", serif;
+  --montserrat: "Montserrat", sans-serif;
+}
+
+body {
+  background-color: var(--cream);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#perfume {
+  width: 600px;
+  height: 450px;
+  background-color: var(--pure-white);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+}
+
+#perfume #left {
+  width: 50%;
+  height: 100%;
+}
+
+#perfume #left img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* object-position: left; */
+  border-radius: 10px 0 0 10px;
+}
+
+#perfume #right {
+  width: 50%;
+  height: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap: 15px;
+}
+
+.subtitle {
+  font-family: var(--montserrat);
+  color: var(--auromental-saurus);
+  font-size: 12px;
+  font-weight: medium;
+  letter-spacing: 5px;
+}
+
+.title {
+  font-family: var(--fraunces);
+  color: var(--gunmetal);
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.description {
+  font-family: var(--montserrat);
+  color: var(--auromental-saurus);
+  font-size: 14px;
+  font-weight: medium;
+  line-height: 23px;
+}
+
+.price-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.price {
+  font-family: var(--fraunces);
+  color: var(--deep-aquamarine);
+  font-size: 32px;
+  font-weight: bold;
+  line-height: 32px;
+}
+
+.discount {
+  font-family: var(--montserrat);
+  color: var(--auromental-saurus);
+  font-size: 13px;
+  font-weight: medium;
+  line-height: 23px;
+  text-decoration: line-through;
+}
+
+#add-to-cart {
+  height: 48px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--deep-aquamarine);
+  color: var(--pure-white);
+  font-family: var(--montserrat);
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  gap: 10px;
+}
+
+#add-to-cart::before {
+  content: "";
+  background-image: url("./assets/cart.png");
+  background-size: cover;
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+}
+
+#cart {
+  background-image: url("./assets/cart.png");
+}
+
+#add-to-cart:hover {
+  background-color: var(--deep-aquamarine-hover);
+}
+
+@media (max-width: 768px) {
+  #perfume {
+    width: 343px;
+    height: 611px;
+    flex-direction: column;
+  }
+  #perfume #left {
+    width: 100%;
+    height: 240px;
+  }
+  #perfume #left img {
+    border-radius: 10px 10px 0 0;
+  }
+
+  #perfume #right {
+    width: 100%;
+    height: 100%;
+    gap: 15px;
+  }
+}
