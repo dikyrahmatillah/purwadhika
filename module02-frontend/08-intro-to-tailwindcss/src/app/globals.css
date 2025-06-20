@@ -1,0 +1,6 @@
+@import "tailwindcss";
+
+@theme {
+  --font-weight-extrablack: 1000;
+  --color-crimson-red: rgba(178, 34, 34, 0.5);
+}
