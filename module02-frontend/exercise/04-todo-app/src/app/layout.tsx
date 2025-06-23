@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={josefinSans.className}>
       <body
-        className={`${josefinSans.variable} ${josefinSans.variable} antialiased`}
+        className={`${josefinSans.variable} ${josefinSans.variable} antialiased `}
       >
         {children}
       </body>
