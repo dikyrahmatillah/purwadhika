@@ -1,1 +1,5 @@
 @import "tailwindcss";
+
+.unchecked {
+  background-image: url("/unchecked.png");
+}
