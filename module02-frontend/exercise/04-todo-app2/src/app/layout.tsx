@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
 import { Josefin_Sans } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/header";
-import Navbar from "@/components/navbar";
-import { UserProvider } from "./contexts/user.contexts";
 
 const josefinSans = Josefin_Sans({
   subsets: ["latin"],
@@ -26,9 +23,6 @@ export default function RootLayout({
       <body
         className={`${josefinSans.variable} ${josefinSans.variable} antialiased `}
       >
-        <Navbar />
-        <Header />
-        {/* <UserProvider>{children}</UserProvider> */}
         {children}
       </body>
     </html>

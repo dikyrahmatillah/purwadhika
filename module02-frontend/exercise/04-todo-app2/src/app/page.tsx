@@ -1,29 +1,35 @@
 "use client";
-import React, { useState, useRef, useContext } from "react";
+import { useState, useRef } from "react";
 import useTheme from "./hooks/useTheme";
-import data from "@/data/todo.json";
+
 export default function Home() {
-  interface Todo {
-    id: number;
-    text: string;
-    completed: boolean;
-  }
-
-  const inputRef = useRef(null);
-  const [todos, setTodos] = useState<Todo[]>(data);
-  const [newTodo, setNewTodo] = useState("");
+  const inputRef = useRef<HTMLInputElement>(null);
+  const [todos, setTodos] = useState([
+    { id: 1, text: "Test", completed: false },
+  ]);
   const [filter, setFilter] = useState("all");
-  const [draggedItem, setDraggedItem] = useState<number | null>(null);
 
-  function handleAddTodo(event: React.FormEvent) {
-    event.preventDefault();
-    setTodos([...todos, { id: Date.now(), text: newTodo, completed: false }]);
-    setNewTodo("");
-  }
+  const filteredTodos = todos.filter((todo) => {
+    if (filter === "active") return !todo.completed;
+    if (filter === "completed") return todo.completed;
+    return true;
+  });
+  const [input, setInput] = useState("");
 
-  const toggleTodo = (id: number) => {
-    setTodos(
-      todos.map((todo) => {
+  const handleAddTodo = () => {
+    if (input.trim() === "") return;
+    const newTodo = {
+      id: todos.length + 1,
+      text: input,
+      completed: false,
+    };
+    setTodos([...todos, newTodo]);
+    setInput("");
+  };
+
+  const handleCheckboxChange = (id: number) => {
+    setTodos((prev) =>
+      prev.map((todo) => {
         if (todo.id === id) {
           return { ...todo, completed: !todo.completed };
         }
@@ -31,49 +37,19 @@ export default function Home() {
       })
     );
   };
-
-  const filteredTodos = todos.filter((todo) => {
-    if (filter === "active") return !todo.completed;
-    if (filter === "completed") return todo.completed;
-    return true;
-  });
-
-  const handeDragStart = (e: React.DragEvent, id: number) => {
-    setDraggedItem(id);
-    e.dataTransfer.effectAllowed = "move";
-  };
-
-  const handleDragOver = (e: React.DragEvent) => {
-    e.preventDefault();
-  };
-
-  const handleDrop = (e: React.DragEvent, dropId: number) => {
-    e.preventDefault();
-
-    if (draggedItem === null || draggedItem === dropId) {
-      setDraggedItem(null);
-      return;
-    }
-
-    const draggedIndex = todos.findIndex((todo) => todo.id === draggedItem);
-    const dropIndex = todos.findIndex((todo) => todo.id === dropId);
-
-    const newTodos = [...todos];
-    const draggedTodo = newTodos[draggedIndex];
-
-    newTodos.splice(draggedIndex, 1);
-    newTodos.splice(dropIndex, 0, draggedTodo);
-
-    setTodos(newTodos);
-    setDraggedItem(null);
-  };
-
-  const handleDragEnd = () => setDraggedItem(null);
-
   const { theme, toggleTheme } = useTheme();
 
   return (
     <>
+      <div className="fixed top-0 left-0 w-full h-[330px] -z-10">
+        <div className="absolute bg-gradient-to-r from-[#AC2DEB] to-[#5596FF] h-[330px] w-full" />
+        <img
+          src="/bg.png"
+          alt="mountain"
+          className="w-full h-[330px] object-cover object-top opacity-15"
+        />
+      </div>
+
       <main className="relative z-10">
         <div className="w-[540px] h-[48px] flex justify-between items-center mx-auto mt-[70px]">
           <h1 className="text-white text-[40px] font-bold tracking-[20px]">
@@ -101,15 +77,17 @@ export default function Home() {
           </button>
         </div>
         <div className="w-[540px] h-[64px] flex items-center mx-auto mt-[40px] bg-white dark:bg-[#181824] dark:text-white p-3 rounded-[5px]">
-          <form onSubmit={handleAddTodo}>
-            <input
-              className="font-[#9495A5] dark:text-white text-md py-3 px-4 w-full bg-transparent outline-none"
-              type="text"
-              placeholder="Create a new todo..."
-              value={newTodo}
-              onChange={(e) => setNewTodo(e.target.value)}
-            />
-          </form>
+          <input
+            ref={inputRef}
+            className="font-[#9495A5] dark:text-white text-md py-3 px-4 w-full bg-transparent outline-none"
+            type="text"
+            placeholder="Create a new todo..."
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") handleAddTodo();
+            }}
+          />
         </div>
         <div className="w-[540px] h-auto mx-auto mt-[24px] bg-white dark:bg-[#181824] gap-2 rounded-[5px] shadow-[0_4px_20px_rgba(0,0,0,0.1)]">
           {filteredTodos.map((e) => {
@@ -117,38 +95,34 @@ export default function Home() {
               <div
                 key={e.id}
                 className={`px-[24px] py-[20px] border-b-2 border-[#E3E4F1] dark:border-[#25273c] flex gap-3 cursor-pointer ${
-                  e.completed
-                    ? "line-through text-[#494C6B] dark:text-[#777c92]"
-                    : "dark:text-white"
+                  e.completed ? "line-through text-[#494C6B] dark:text-[#777c92]" : "dark:text-white"
                 }`}
-                draggable
-                onDragStart={(event) => handeDragStart(event, e.id)}
-                onDragOver={(event) => handleDragOver(event)}
-                onDrop={(event) => handleDrop(event, e.id)}
-                onDragEnd={handleDragEnd}
+                onClick={() => handleCheckboxChange(e.id)}
               >
                 <input
                   type="checkbox"
                   checked={e.completed}
-                  onChange={() => toggleTodo(e.id)}
+                  onChange={() => handleCheckboxChange(e.id)}
                 />
                 <p className="font-[#494C6B] dark:text-inherit">{e.text}</p>
-                <div className="ml-auto">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="w-5 h-5 text-[#e2e3ec] dark:text-[#a7acdd] cursor-grab ml-auto"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <circle cx="9" cy="6" r="1.2" />
-                    <circle cx="9" cy="12" r="1.2" />
-                    <circle cx="9" cy="18" r="1.2" />
-                    <circle cx="15" cy="6" r="1.2" />
-                    <circle cx="15" cy="12" r="1.2" />
-                    <circle cx="15" cy="18" r="1.2" />
-                  </svg>
-                </div>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-5 h-5 text-[#C8CBE7] dark:text-[#44476a] cursor-grab ml-auto"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  onDrag={(event) => {
+                    event.preventDefault();
+                    setTodos(todos.filter((todo) => todo.id !== e.id));
+                  }}
+                >
+                  <circle cx="9" cy="6" r="1.2" />
+                  <circle cx="9" cy="12" r="1.2" />
+                  <circle cx="9" cy="18" r="1.2" />
+                  <circle cx="15" cy="6" r="1.2" />
+                  <circle cx="15" cy="12" r="1.2" />
+                  <circle cx="15" cy="18" r="1.2" />
+                </svg>
               </div>
             );
           })}
@@ -194,6 +168,7 @@ export default function Home() {
           Drag and drop to reorder list
         </div>
       </main>
+      {/* <TodoBox /> */}
     </>
   );
 }

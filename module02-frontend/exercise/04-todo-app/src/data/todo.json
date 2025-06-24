@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "text": "Makan",
+        "completed": false
+    },
+    {
+        "id": 2,
+        "text": "Minum",
+        "completed": false
+    },
+    {
+        "id": 3,
+        "text": "Main",
+        "completed": false
+    },
+    {
+        "id": 4,
+        "text": "Molor",
+        "completed": false
+    }
+]
