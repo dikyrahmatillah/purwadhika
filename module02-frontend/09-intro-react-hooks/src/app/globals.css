@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    @apply bg-gray-200 text-black;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-white rounded-lg py-4 px-6 shadow-xl flex gap-4 items-center justify-center;
+  }
+}
